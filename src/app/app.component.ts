@@ -14,19 +14,22 @@ export class AppComponent {
   constructor() {}
 }
 
-var _subscription: Subscription;
+var observableObj: Observable<any>;
+var filterObservableObj: Observable<any>;
 function asycStream(obv: any) {
   console.log('a');
-  setInterval(() => {
+  /*setInterval(() => {
     obv.next(Math.random() * 10);
-  }, 5000);
+  }, 5000);*/
 }
 
-_subscription = new Observable(asycStream).subscribe((res) => {
+observableObj = new Observable(asycStream);
+filterObservableObj = observableObj.pipe(filter((x) => x > 4));
+
+filterObservableObj.subscribe((res) => {
   observerFn(res);
 });
 
 function observerFn(data) {
   console.log(data);
-  _subscription.unsubscribe();
 }
