@@ -20,7 +20,7 @@ function asycStream(obv: any) {
   console.log('a');
   /*setInterval(() => {
     obv.next(Math.random() * 10);
-  }, 5000);*/
+  }, 5000);*/ 
 }
 
 observableObj = new Observable(asycStream);
