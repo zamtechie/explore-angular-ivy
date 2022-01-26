@@ -16,7 +16,7 @@ export class AppComponent {
 function asycStream(obv: any) {
   console.log('a');
   /*setInterval(() => {
-    obv.next(Math.random());
+    obv.next(Math.random() * 10);
   }, 5000);*/
 }
 
