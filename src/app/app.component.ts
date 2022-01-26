@@ -20,9 +20,12 @@ function asycStream(obv: any) {
   }, 5000);*/
 }
 
-// let observerObj = Observable.create(asycStream);
-let observerObj = new Observable(asycStream);
+var observerObj = new Observable(asycStream);
 
 observerObj.subscribe((res) => {
-  console.log(res);
+  observerFn(observerObj, res);
 });
+
+function observerFn(obsObj, data) {
+  console.log(data);
+}
