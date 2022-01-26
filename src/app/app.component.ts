@@ -1,6 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -13,19 +14,19 @@ export class AppComponent {
   constructor() {}
 }
 
+var _subscription: Subscription;
 function asycStream(obv: any) {
   console.log('a');
-  /*setInterval(() => {
+  setInterval(() => {
     obv.next(Math.random() * 10);
-  }, 5000);*/
+  }, 5000);
 }
 
-var observerObj = new Observable(asycStream);
-
-observerObj.subscribe((res) => {
-  observerFn(observerObj, res);
+_subscription = new Observable(asycStream).subscribe((res) => {
+  observerFn(res);
 });
 
-function observerFn(obsObj, data) {
+function observerFn(data) {
   console.log(data);
+  _subscription.unsubscribe();
 }
